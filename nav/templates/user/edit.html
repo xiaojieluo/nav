@@ -1,0 +1,40 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+    编辑用户
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <div class="">
+            <label for="">昵称：</label>
+            <input type="text" name="username" value="{{ user.username }}" id="username">
+        </div>
+
+        <div class="">
+            <input type="submit" name="" value="Submit." id="submit">
+        </div>
+    </form>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+// $(document).ready(function(){
+//     $("#username").blur(function(){
+//         console.log('username.blur')
+//     });
+//     $('#submit').click(function(){
+//         console.log('submit click')
+//         if(check()){
+//
+//         }
+//     });
+// });
+
+function check(){
+    // 检查 传输的值
+
+}
+</script>
+{% endblock %}

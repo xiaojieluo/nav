@@ -1,0 +1,29 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+    增加链接
+{% endblock %}
+
+
+{% block content %}
+    <form action="" method="post">
+        <div class="">
+            <label for="">链接地址</label>
+            <input type="text" name="url" value="">
+        </div>
+
+        <div class="">
+            <label for="">标题</label>
+            <input type="text" name="title" value="">
+        </div>
+
+        <div class="">
+            <label for="">标签</label>
+            <input type="text" name="tags" value="" placeholder="use , to split">
+        </div>
+
+        <div class="">
+            <input type="submit" name="" value="Submit.">
+        </div>
+    </form>
+{% endblock %}

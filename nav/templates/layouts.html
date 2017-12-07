@@ -1,0 +1,90 @@
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>{% block title %}Home{% endblock %} - nav</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="{{ url_for('static', filename='app-icon72x72@2x.png') }}">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="nav"/>
+  <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='app-icon72x72@2x.png') }}">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="{{ url_for('static', filename='app-icon72x72@2x.png') }}">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='amazeui/css/amazeui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='amazeui/css/app.css') }}">
+  {% block css %}
+  {% endblock %}
+
+  <!--[if (gte IE 9)|!(IE)]><!-->
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <!--<![endif]-->
+  <!--[if lte IE 8 ]>
+  <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+  <script src="{{ url_for('static', filename='js/amazeui.ie8polyfill.min.js') }}"></script>
+  <![endif]-->
+  <script src="{{ url_for('static', filename='js/amazeui.min.js') }}"></script>
+  {% block script %}
+  {% endblock %}
+</head>
+<body>
+
+<div class="header" id="header">
+    <span><a href="{{ url_for('index') }}">Home</a></span>
+    <span><a href="{{ url_for('news') }}">News</a> </span>
+    <span><a href="{{ url_for('add') }}">Submit</a> </span>
+    <hr>
+</div>
+
+<!--在这里编写你的代码-->
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+
+{% block footer %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+<!-- 链接 列表模板
+传入 links 参数， 循环显示
+-->
+
+{% block script %}
+    
+    <script src="https://cdn.bootcss.com/moment.js/2.19.0/moment.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.19.0/locale/zh-cn.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var created_at = $('.created_at')
+            created_at.each(function(){
+                $(this).html(transTimeToHuman($(this).html()))
+            })
+        });
+
+        function transTimeToHuman(time){
+            /**
+             * 转换 datetime 为人类可读的形式
+             * @type {String}
+             */
+            return moment(time).fromNow()
+        }
+    </script>
+{% endblock %}
+
+
+{% block content %}
+{% if not links %}
+    列表为空。
+{% endif %}
+
+{# link list#}
+<ul>
+    {% for link in links %}
+    <li>
+        <div class="">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            <small><i>({{ link.url }})</i> </small>
+            {% if link.uid == session.get('uid', 'Nothing.') %}
+                [<a href="{{ url_for('link_edit', lid = link.id, previous = 'index') }}">Edit</a>]
+            {% endif %}
+            <br>
+
+            {% if link.tags %}
+            <label for="">Tags:</label>
+                {% for tag in link.tags %}
+                    <a href="{{ url_for('tag', name = tag ) }}">{{ tag }}</a>
+                {% endfor %}
+            {% endif %}
+
+            {% if link.published_at %}
+                <p><small>published_at: {{ link.published_at }}</small></p>
+            {% endif %}
+
+            <div class="" style="font-size:10px;">
+                {{ link.username }} 发布于
+                {% if link.created_at %}
+                        <time class="created_at" datetime="{{link.created_at}}">{{ link.created_at }}</time>
+                {% endif %}
+            </div>
+
+            {% if link.updated_at %}
+                <p><small>updated_at: {{ link.updated_at }}</small></p>
+            {% endif %}
+
+        </div>
+    <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

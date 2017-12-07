@@ -1,0 +1,26 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+
+{% block content %}
+    {% if session.get('uid', 'Nothing.') == '%s'| format(user.id) %}
+        <!-- 是自己的主页 -->
+        <a href="{{ url_for('user_edit', uid = user.id) }}">Edit</a>
+        <br>
+        <a href="{{ url_for('user_links', uid = user.id) }}">我的链接</a>
+    {% endif %}
+    <div class="">
+        <img src="{{ user.avatar }}" alt="user avatar">
+    </div>
+
+    <div class="">
+        <label for="">Id: {{ user.id }}</label>
+    </div>
+
+    <div class="">
+        <label for="">Username:{{ user.username }}</label>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+    包含 {{ tagname }} 标签的链接
+{% endblock %}
+
+{% block content %}
+<h2>{{ tagname }}:</h2>
+    {% include "link/list.html" %}
+{% endblock %}

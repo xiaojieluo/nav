@@ -1,0 +1,17 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+    网址导航
+{% endblock %}
+
+{% block content %}
+    {% if 'username' in session %}
+        welcome, <a href="{{ url_for('user', uid=session['uid']) }}">{{ session['username'] }}</a>|[<a href="{{ url_for('logout') }}">Logout</a>]<br />
+        <a href="{{ url_for('add') }}">add a link</a>
+    {% else %}
+        please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.
+    {% endif %}
+
+    {# loading link list#}
+    {% include "link/list.html" %}
+{% endblock %}
