@@ -2,6 +2,12 @@ from mongoengine import connect, QuerySet
 import copy
 connect('nav')
 
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+db = client['nav']
+
+
 
 class Model(object):
 
@@ -54,7 +60,6 @@ class Model(object):
     # def update(cls, *args, **kw):
     #     '''更新数据'''
     #
-
 
 # loading model
 from .user_model import User

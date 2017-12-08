@@ -24,5 +24,7 @@ class User(Document, Model):
         '''user register'''
         # 过滤 model 中未定义的 fields
         data = {k:v for k, v in kw.items() if k in cls._fields }
+        # print(help(cls))
         user = cls(**data)
         user.save()
+        return user

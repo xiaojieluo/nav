@@ -72,7 +72,8 @@ def login():
             else:
                 return redirect(url_for('index'))
         else:
-            info('{} login failed.'.format(data['username']))
+            # info('{} login failed.'.format(data['username']))
+            flash('{} login failed.'.format(data['username']))
             return render_template('user/login.html')
     else:
         return render_template('user/login.html')
@@ -89,10 +90,11 @@ def register():
                 User.register(**data)
             except NotUniqueError as e:
                 info("注册失败:{}".format(e))
-                flash(e.args)
+
+                flash('register failed: {}'.format(e.args))
                 return redirect(url_for('register'))
 
-        flash("注册成功")
+        flash("register successful.")
         info("注册成功")
         return redirect(url_for('register'))
     else:
